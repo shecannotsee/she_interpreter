@@ -66,12 +66,7 @@
 
 ```
 # array 
-[](a){
-	1;
-	2;
-	3;
-	4;
-};
+[](a){1;2;3;4;};
 # get array-a first, and b=1
 [=](b, [0](a));
 # loop for array
@@ -94,5 +89,68 @@
 [struct]([](a){},
          [=](b),
          );
+[=](st,[struct]([](a){},
+                [=](b),
+               )
+   );
 ```
 
+
+
+#### namespace
+
+```
+[function_name](){
+	// namespace function_name
+}
+
+namespace_xxx{
+	// namespace namespace_xxx
+}
+```
+
+
+
+### Special functions
+
+#### 1.[] or [int]
+
+maybe array or list, get from [index]
+
+```
+c:
+    int a[] = {1,2,3,4};
+    a[0];// 1
+she:
+    [](a){1;2;3;4};
+    [0](a);// 1
+```
+
+
+
+#### 2.[=]
+
+```
+[=](p1,p2): let p1 equal to p2
+[=](p1): p1 means a var
+c:
+    int a;
+    a = 1;
+she:
+    [=](a);
+    [=](a,1);
+```
+
+#### 3.[struct]
+
+```
+build a Complex Data Structures
+```
+
+#### 4.[if] or [elseif] or [else]
+
+branch function
+
+#### 5.[while]
+
+loop function
