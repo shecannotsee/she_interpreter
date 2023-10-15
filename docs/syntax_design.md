@@ -1,45 +1,86 @@
-example
+#### define var
 
 ```
-[define](p1 p2 ......);
+[=](a,1)
+[=](a,1.0)
 ```
 
-define and var
+
+
+#### function
 
 ```
-# let a = 3
-[define](a 3);
-# let a = b
-[=](a b)
+# define function
+[add](p1,p2,p3){
+	[=](ret,[+](p1,p2,p3));
+	return ret;
+}
+
+# call function
+[=](p1,1);
+[=](p2,2);
+[=](p3,3);
+[add](p1,p2,p3);
 ```
 
-function define
+
+
+#### Branches and loops
 
 ```
-{[add](a b)
-	[=](a 3);
-	[=](b 7);
-	return [+](a b);
+# branches
+# tips:
+# [if]是一个函数，如果返回为true就会执行{}内的指令,并且忽略后续的[elseif](...)和[else]()函数直到遇见下一个[if]或者是遇到else(){}之后开始执行后续的命令
+[if]([>](a,4)) {
+
+}
+[elseif]([<](a,4)) {
+
+}
+[else]() {
+
+}
+
+# loop
+# while会反复执行{}，直到入参函数的返回值为false
+[while]([>](a,4)) {
+
 }
 ```
 
-function call
+
+
+#### lambda
 
 ```
-# return 10
-[add](5 10);
+# a->10
+[=](a,[](){
+  [=](ret,10);
+  return ret;
+});
 ```
 
 
 
-jump
+#### Complex Data Structures
 
 ```
-[=](a 1)
-[if](a [>](a 5))
-	;
-	;
-[elseif](a [<](a 5))
+# array 
+[](a){
+	1;
+	2;
+	3;
+	4;
+};
+# get array-a first, and b=1
+[=](b, [0](a));
+# empty array
+[](a){};
 
+
+[struct]([](a){},
+         [=](b),
+         []
+         );
 ```
 
