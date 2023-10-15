@@ -74,13 +74,25 @@
 };
 # get array-a first, and b=1
 [=](b, [0](a));
+# loop for array
+[=](index,0)
+[while]([=]([index](a), NULL)) {
+    # print: [index](a)
+}
+
 # empty array
 [](a){};
+
+# list
+[](a){
+    1;
+    [add](p1,p2);
+    [=](b)
+}
 
 
 [struct]([](a){},
          [=](b),
-         []
          );
 ```
 
