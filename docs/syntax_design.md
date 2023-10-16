@@ -111,6 +111,23 @@ namespace_xxx{
 
 
 
+#### recursion
+
+```
+[add](i){
+	[if]([==](a,1)){
+	    return [=](ret,1);
+	}
+	[else](){
+		[=](a,i);
+	    [-](a,1);
+	    return [add](a);
+	}
+}
+```
+
+
+
 ### Special functions
 
 #### 1.[] or [int]
