@@ -128,6 +128,14 @@ namespace_xxx{
 
 
 
+#### Like C include
+
+```
+
+```
+
+
+
 ### Special functions
 
 #### 1.[] or [int]
