@@ -188,40 +188,6 @@ maybe array or list, get from [index]
 
 
 
-#### closure
-
-```
-# define
-[closure]([](){
-	// get all variables in the current namespace
-};);
-```
-
-
-
-#### call/cc
-
-```
-[runing](){
-	[=](a,1);
-	[closure]([](){
-		[call/cc]();
-		[=](a;2);
-	};);
-}
-
-
-[](){
-	[while](true;[](){
-		[running]();
-		# do something
-		[call/cc]();
-	};);
-}
-```
-
-
-
 ### Basic usage
 
 #### value
