@@ -159,7 +159,7 @@ maybe array or list, get from [index]
 [](a){1;2;3;4};
 [=](index_0_from_a;[0](a););
 
-# easy str
+# easy str,equal to c like: char a[10];
 []([type](a;char;);10;){};
 ```
 
@@ -168,17 +168,22 @@ maybe array or list, get from [index]
 #### struct
 
 ```
+# define add function
+[add](p1;p2;) {
+	return [+](p1,p2;);
+};
 # define
 [struct](class;     # struct name
          [=](number,0);   # class number
          []([type](a;char;);10;){}; # classmate name
+         [add](p1;p2;); # add function
         );
 
 
-# use
+# get
 [=](my_class;class);
-[.](my_calss;number);
-[.](my_calss;[0](name));
+[.](my_calss;number); # return value
+[.](my_calss;[0](name)); # return value
 ```
 
 
