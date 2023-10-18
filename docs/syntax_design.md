@@ -158,6 +158,9 @@ maybe array or list, get from [index]
 [](a;4){1;2;3;4};
 [](a){1;2;3;4};
 [=](index_0_from_a;[0](a););
+
+# easy str
+[]([type](a;char;);10;){};
 ```
 
 
@@ -167,14 +170,15 @@ maybe array or list, get from [index]
 ```
 # define
 [struct](class;     # struct name
-         [=](number,0); # class number
-         [](name;10){}; # classmate Name
+         [=](number,0);   # class number
+         []([type](a;char;);10;){}; # classmate name
         );
 
 
 # use
 [=](my_class;class);
-
+[.](my_calss;number);
+[.](my_calss;[0](name));
 ```
 
 
