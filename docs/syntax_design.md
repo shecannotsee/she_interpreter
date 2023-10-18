@@ -1,8 +1,206 @@
-#### define var
+## lambda calculus
+
+#### base
+
+In lambda calculus, there are only variables, function definitions, and function applications.
+
+**variables**: value-example[ x ]
+
+**function definitions**: example[ f(x).L ]
+
+**function applications**: example[ f(N) ], N means parameter
+
+tips: You can write f as λ, but I'm not sure if Xλcan display correctly, after all, it's not in ASCII table
+
+**loop**=λf.(λx.f (x x)) (λx.f (x x))
+
+
+
+## she-language
+
+### atomic function
+
+Atomic functions mean that the **interpreter provides implementation directly** and **cannot be customized by the user**.
+
+
+
+#### type
+
+If no type is defined, it will be automatically derived
 
 ```
-[=](a,1)
-[=](a,1.0)
+# all type
+# true      false
+# int_8     uint_8
+# int_16    uint_16
+# int_32    uint_32
+# int_64    uint_64
+# float32   float64
+# char
+
+# define type
+[type](p1;int);
+```
+
+
+
+#### operator
+
+```
+# Calculation operator
+[+](1;2); # return 3
+[-](5;2); # return 3
+[*](2;5); # return 10
+[/](4;2); # return 2
+[=](i;0); # int_8 i=0
+[+](i;3); # i changed to 3
+[-](i;1); # i changed to 2
+[*](i;4); # i changed to 8
+[/](i;4); # i changed to 2
+
+# comparison operator
+[==](true;true;); # return true
+[==](true;true;); # return true
+
+[>](param_1;param_2);
+[>=](param_1;param_2);
+[<](param_1;param_2);
+[<=](param_1;param_2);
+```
+
+
+
+#### branch
+
+define
+
+```
+# run branch when pN means true
+[if](conditional_1;[if-branch]();
+     conditional_2;[elseif-branch-1]();
+     conditional_3;[elseif-branch-2]();
+     conditional_n;[else-branch]();
+     );
+# if equal to switch
+[switch](conditional_1;[branch-1]();
+         conditional_2;[branch-2]();
+         conditional_3;[branch-3]();
+         conditional_n;[branch-n]();
+        );
+```
+
+example
+
+```
+[if](true;[](){}; # run this function
+     true;[](){}; # not run this function
+     true;[](){}; # not run this function
+    );
+[if](false;[](){}; # not run this function
+     false;[](){}; # not run this function
+     false;[](){}; # not run this function
+    );
+    
+[switch](true;[](){}; # run this function
+         true;[](){}; # not run this function
+         true;[](){}; # not run this function
+        );
+[switch](false;[](){}; # not run this function
+         false;[](){}; # not run this function
+         false;[](){}; # not run this function
+        );
+```
+
+
+
+
+
+#### loop
+
+define
+
+```
+# when conditional is true,run the body.Until p1 turn to false
+[while](conditional;[body](););
+```
+
+example
+
+```
+# like c:
+# bool flag = true;
+# int sum = 0;
+# while(flag) {
+#   sum = sum + 1;
+#   if (sum==10) {
+#     flag = false;// to break
+#   }
+# }
+[=](p1;true);
+[=](sum;0);
+[while](p1;[](){
+  [+](sum;1);
+  [if]([==](sum;10);[](){[=](p1;false)};);
+});
+```
+
+
+
+#### array and get array element
+
+maybe array or list, get from [index]
+
+```
+# c:
+#     int a[] = {1,2,3,4};
+#     a[0];// 1
+# she:
+[](a;4){1;2;3;4};
+[](a){1;2;3;4};
+[=](index_0_from_a;[0](a););
+```
+
+
+
+#### struct
+
+```
+# define
+[struct](class;     # struct name
+         [=](number,0); # class number
+         [](name;10){}; # classmate Name
+        );
+
+
+# use
+[=](my_class;class);
+
+```
+
+
+
+### Basic usage
+
+#### value
+
+define
+
+```
+# return number
+1;
+# return float
+1.1;
+# return string
+"";
+```
+
+example
+
+```
+# int_8 i8 = 0;
+[=](i8;0);
+# uint_64 ui64 = 0;
+[=]([type](i64;uint_64);0);
 ```
 
 
@@ -11,89 +209,36 @@
 
 ```
 # define function
-[add](p1,p2,p3){
-	[=](ret,[+](p1,p2,p3));
-	return ret;
-}
+[add](p1;p2;p3;){
+	return [=](ret;[+](p1;p2;p3;););
+};
 
 # call function
-[=](p1,1);
-[=](p2,2);
-[=](p3,3);
-[add](p1,p2,p3);
-```
-
-
-
-#### Branches and loops
-
-```
-# branches
-# tips:
-# [if]是一个函数，如果返回为true就会执行{}内的指令,并且忽略后续的[elseif](...)和[else]()函数直到遇见下一个[if]或者是遇到else(){}之后开始执行后续的命令
-[if]([>](a,4)) {
-
-}
-[elseif]([<](a,4)) {
-
-}
-[else]() {
-
-}
-
-# loop
-# while会反复执行{}，直到入参函数的返回值为false
-[while]([>](a,4)) {
-
-}
+[=](p1;1);
+[=](p2;2);
+[=](p3;3);
+[add](p1,p2,p3); # return 6
 ```
 
 
 
 #### lambda
 
+Anonymous lambda always executes directly
+
 ```
+# define
+[must null](must null){
+}
+
+# example
 # a->10
-[=](a,[](){
-  [=](ret,10);
-  return ret;
-});
+[=](a;[](){
+  return[=](ret;10);
+};);
 ```
 
 
-
-#### Complex Data Structures
-
-```
-# array 
-[](a){1;2;3;4;};
-# get array-a first, and b=1
-[=](b, [0](a));
-# loop for array
-[=](index,0)
-[while]([=]([index](a), NULL)) {
-    # print: [index](a)
-}
-
-# empty array
-[](a){};
-
-# list
-[](a){
-    1;
-    [add](p1,p2);
-    [=](b)
-}
-
-
-[struct]([](a){},
-         [=](b),
-         );
-[=](st,[struct]([](a){},
-                [=](b),
-               )
-   );
-```
 
 
 
@@ -136,46 +281,4 @@ namespace_xxx{
 
 
 
-### Special functions
-
-#### 1.[] or [int]
-
-maybe array or list, get from [index]
-
-```
-c:
-    int a[] = {1,2,3,4};
-    a[0];// 1
-she:
-    [](a){1;2;3;4};
-    [0](a);// 1
-```
-
-
-
-#### 2.[=]
-
-```
-[=](p1,p2): let p1 equal to p2
-[=](p1): p1 means a var
-c:
-    int a;
-    a = 1;
-she:
-    [=](a);
-    [=](a,1);
-```
-
-#### 3.[struct]
-
-```
-build a Complex Data Structures
-```
-
-#### 4.[if] or [elseif] or [else]
-
-branch function
-
-#### 5.[while]
-
-loop function
+### 
