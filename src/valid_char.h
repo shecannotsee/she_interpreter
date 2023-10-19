@@ -14,6 +14,10 @@ struct valid_char {
   int tuples() const {
     return this->index.size();
   };
+  void insert(int start, int end) {
+    this->index.emplace_back(start,end);
+  }
+
   static int get_start(std::vector<std::tuple<int,int>> _,int _index){
     return std::get<0>(_[_index]);
   }
