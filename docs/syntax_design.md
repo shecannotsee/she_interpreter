@@ -168,23 +168,23 @@ maybe array or list, get from [index]
 #### struct
 
 ```
-# define add function
-[add](p1;p2;) {
-	return [+](p1,p2;);
-};
+[struct](struct_name;value;true_or_false);
+
 # define
-[struct](class;     # struct name
-         [=](number,0);   # class number
-         []([type](a;char;);10;){}; # classmate name
-         [add](p1;p2;); # add function
+[struct](class;
+         [=](class_number;2301);
+         [](classmate_number;3;){1;2;3;};
+         [struct](class;);
         );
 
-
-# get
-[=](my_class;class);
-[.](my_calss;number); # return value
-[.](my_calss;[0](name)); # return value
+[=](class_entity;class;);
+[=](name_number;
+    [.](class_entity;class_number;); # get from class::class_number
+   );
+# name_number : 2301
 ```
+
+
 
 
 
@@ -228,6 +228,8 @@ example
 [=](p3;3);
 [add](p1,p2,p3); # return 6
 ```
+
+
 
 
 
