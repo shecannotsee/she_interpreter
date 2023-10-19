@@ -8,14 +8,17 @@
 #include <tuple>
 #include <vector>
 
-struct valid_char {
-  valid_char() = default;
+class valid_char {
+ private:
   std::vector<std::tuple<int,int>> index;
+ public:
+  valid_char() = default;
   int tuples() const {
-    return this->index.size();
+    return static_cast<int>(this->index.size());
   };
-  void insert(int start, int end) {
-    this->index.emplace_back(start,end);
+
+  void insert(int start_index, int end_index) {
+    this->index.emplace_back(start_index, end_index);
   }
 
   static int get_start(std::vector<std::tuple<int,int>> _,int _index){
