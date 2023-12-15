@@ -14,6 +14,7 @@ namespace simple_code {
 struct she_function {
   std::string name;
   std::vector<std::string> params;
+  std::vector<she_function*> body;
 };
 
 struct node {
