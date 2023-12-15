@@ -1,0 +1,5 @@
+
+[main](){
+  [type](number;uint_8);
+  [=](number;10);
+}
