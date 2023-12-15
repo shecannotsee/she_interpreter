@@ -10,13 +10,14 @@
 TEST(Tree_test, class_tree) {
   simple_code::Tree<int> myTree;
 
-  myTree.addNode(1);  // Adding root node
-  myTree.addNode(2, myTree.root);  // Adding a child to the root
-  myTree.addNode(3, myTree.root);
-  myTree.addNode(4, myTree.root->children[0]);  // Adding a child to the first child of the root
-  myTree.addNode(5, myTree.root->children[0]);
+  const auto root = myTree.addNode(1);  // Adding root node
+  const auto root_p1 = myTree.addNode(2, root);  // Adding a child to the root
+  const auto root_p2 = myTree.addNode(3, root);
+  const auto root_p1_p1 = myTree.addNode(4, root_p1);  // Adding a child to the first child of the root
+  myTree.addNode(5, root_p1_p1);
 
   myTree.printTree();
+  std::cout << "########\n";
   myTree.printTreeShape();
 
 }

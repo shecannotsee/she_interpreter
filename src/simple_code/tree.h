@@ -38,7 +38,7 @@ public:
     delete root;
   }
 
-  void addNode(const T& value, TreeNode<T>* parent = nullptr) {
+  TreeNode<T>* addNode(const T& value, TreeNode<T>* parent = nullptr) {
     TreeNode<T>* newNode = new TreeNode<T>(value);
 
     if (parent == nullptr) {
@@ -48,11 +48,14 @@ public:
       } else {
         std::cerr << "Root node already exists." << std::endl;
         delete newNode;
+        newNode = nullptr;
       }
     } else {
       // Add the node as a child of the specified parent
       parent->children.push_back(newNode);
     }
+
+    return newNode;
   }
 
   void printTree(TreeNode<T>* node, int depth = 0) const {
