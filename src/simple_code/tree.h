@@ -28,7 +28,7 @@ public:
 
 template <typename T>
 class Tree {
-public:
+private:
   TreeNode<T>* root;
 
 public:
